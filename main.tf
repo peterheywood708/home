@@ -11,6 +11,11 @@ terraform{
     }
 }
 
+variable "imagebuild" {
+    type = string
+    description = "Latest Image Build"
+}
+
 resource "azurerm_resource_group" "tf_home"{
     name = "web_home_rg"
     location = "UK West"
@@ -27,7 +32,7 @@ resource "azurerm_container_group" "tfcg_home"{
 
     container{
         name = "home"
-        image = "peterheywood708/home"
+        image = "peterheywood708/home:${var.imagebuild}"
             cpu = "1"
             memory = "1"
 
