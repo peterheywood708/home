@@ -2,6 +2,15 @@ provider "azurerm" {
     features {}
 }
 
+terraform{
+    backend "azurerm"{
+        resource_group_name = "tf_rg_blobstorage"
+        storage_account_name = "storagepeterheywod708"
+        container_name = "tfstate"
+        key = "terraform.tfstate"
+    }
+}
+
 resource "azurerm_resource_group" "tf_home"{
     name = "web_home_rg"
     location = "UK West"
